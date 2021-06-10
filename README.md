@@ -1,1 +1,1 @@
-# Webprogramozas2
+# Webprogramozas 2 Projekt.
