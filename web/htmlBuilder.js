@@ -795,7 +795,7 @@ function addProgress(idIN){
                         <option disabled selected value> -- select an option -- </option>
                         
                         </select>
-                        <br/>
+                        <br>
                     </li>
                     <li>
                         <input type="button" value="Select" name="SelectGame" onclick="loadAchievementsForGame()" />
@@ -806,20 +806,21 @@ function addProgress(idIN){
                         <select name="Achievements" class="achievementsAdd", id="achievementsOfGame">
                         <option disabled selected value> -- select an option -- </option>
                         </select>
-                        <br/>
+                        <br>
                     </li>
                     <li>
-                        <input type="button" value="Add" name="AddGame" onclick="saveAchievement()" class="achievementsAdd"/>
+                        <input type="button" value="Add Achievement" name="AddGame" onclick="saveAchievement()" class="achievementsAdd"/>
+                        <br>
                     </li>
                     
                     <li>
 
                         <label class="progressAdd" id="devLBL">Minutes played: </label>
                         <input id="minutesIN" type="number" min="0" name="Minutes played" value="" class="progressAdd"/>
-                        <br/>
+                        <br>
                     </li>
                     <li>
-                        <input type="button" value="Add" name="AddGame" onclick="saveProgress()" class="progressAdd"/>
+                        <input type="button" value="Save Minutes" name="AddGame" onclick="saveProgress()" class="progressAdd"/>
                     </li>
                     
                 </ul>
@@ -846,17 +847,16 @@ function checkProgress(){
     
     document.getElementsByTagName("body")[0].innerHTML += `
         <main class="userMain">
-
-            <div id="chooseGame">
+            <div class="table-wrapper">
                 <h2>This is your progress history so far:</h2>
-                <table>
+                <table class=fl-table>
                     <thead>
                         <tr>
-                            <td>Game</td>
-                            <td>username</td>
-                            <td>First played</td>
-                            <td>Last played</td>
-                            <td>Total minutes</td>
+                            <th>Game</th>
+                            <th>username</th>
+                            <th>First played</th>
+                            <th>Last played</th>
+                            <th>Total minutes</th>
                         </tr>                        
                     </thead>
                     <tbody>
@@ -959,7 +959,7 @@ function listAllGame(countIn){
             document.getElementsByTagName("body")[0].innerHTML += `
                 <main class='adminMain'>
             <div id="newGame">
-                <h2>Add an ovearll review to the desired game</h2>
+                <h2>Add an overall review to the desired game</h2>
                 <ul>
                     <li>
                         <label>Game: </label> 
@@ -1032,4 +1032,5 @@ function addReview(){
         });
     }
 }
+
 
