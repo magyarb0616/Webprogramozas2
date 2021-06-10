@@ -7,28 +7,9 @@ function setup(){
             callUserPage();
         }
     }
-    getJoke();
+ 
 }
 
-//DONE, gets joke on page load
-function getJoke(){
-    //clearLocalStorage(); Not sure why it was here
-    var xmlhttp = new XMLHttpRequest();
-    var url = "https://official-joke-api.appspot.com/jokes/programming/random";
-    
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-    
-    xmlhttp.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status === 200){
-            var myArr = JSON.parse(this.responseText);
-            //console.log(myArr);
-            document.getElementById("joke").innerHTML += 
-                    "<b>Daily joke: </b>" + 
-                    myArr[0].setup + " " + myArr[0].punchline;
-        }
-    };
-}
 
 //DONE
 function clearContent(){    
@@ -47,7 +28,6 @@ function logOut(){
 function setupLogin(){
     document.getElementsByTagName("body")[0].innerHTML += `
         <div id="login">
-            
             <div>
                 <h1>Rate our games</h1>
                 <h4>Your opinion matters to us</h4>
@@ -56,7 +36,7 @@ function setupLogin(){
                 <label>Login code: </label>
                 <input id="passIN" type="text" name="pass" value="" />  
                 <br>
-                <input type="button" value="Bejelentkezés" name="submitPass" onclick="login()" />
+                <input type="button" class="btn btn-secondary" value="Bejelentkezés" name="submitPass" onclick="login()" />
             </div>
         </div>`;
 }
@@ -67,31 +47,31 @@ function setupAdminAside(){
         <aside id="adminAside">
             <ul>
                 <li>
-                    <input type="button" value="Choose game" name="chooseGame" onclick="chooseGame(0)" />   
+                    <input class="btn btn-outline-secondary" type="button" value="Choose game" name="chooseGame" onclick="chooseGame(0)" />   
                 </li>
                 <li>
-                    <input type="button" value="Add new game" name="addNewGame" onclick="newGame()" />
+                    <input class="btn btn-outline-secondary" type="button" value="Add new game" name="addNewGame" onclick="newGame()" />
                 </li>
                 <li>
-                    <input type="button" value="Choose Tester" name="chooseTester" onclick="chooseTester(0)" />
+                    <input class="btn btn-outline-secondary" type="button" value="Choose Tester" name="chooseTester" onclick="chooseTester(0)" />
                 </li>
                 <li>
-                    <input type="button" value="Add new Tester/Admin" name="addNewTester" onclick="newTester()" />
+                    <input class="btn btn-outline-secondary" type="button" value="New Tester/Admin" name="addNewTester" onclick="newTester()" />
                 </li>
                 <li>
-                    <input type="button" value="Check charts" name="checkCharts" onclick="checkCharts()" />
+                    <input class="btn btn-outline-secondary" type="button" value="Check charts" name="checkCharts" onclick="checkCharts()" />
                 </li>
                 <li>
-                    <input type="button" value="Add Progress" name="addProgress" onclick="addProgress()" />   
+                    <input class="btn btn-outline-secondary" type="button" value="Add Progress" name="addProgress" onclick="addProgress()" />   
                 </li>
                 <li>
-                    <input type="button" value="Check progress" name="checkProgress" onclick="checkProgress()" />
+                    <input class="btn btn-outline-secondary" type="button" value="Check progress" name="checkProgress" onclick="checkProgress()" />
                 </li>
                 <li>
-                    <input type="button" value="Add Review" name="addReview" onclick="listAllGame(0)" />
+                    <input class="btn btn-outline-secondary" type="button" value="Add Review" name="addReview" onclick="listAllGame(0)" />
                 </li>
                 <li>
-                    <input type="button" value="Log out" name="logOut" onclick="logOut()" />
+                    <input class="btn btn-outline-secondary" type="button" value="Log out" name="logOut" onclick="logOut()" />
                 </li>
             </ul>
         </aside>`;
@@ -115,23 +95,26 @@ function chooseGame(countIn){
             max = response.result.length;
             if(count > response.result.length - 10) count = response.result.length-10;
             document.getElementsByTagName("body")[0].innerHTML += `
-                <main class="adminMain">            
-                    <div id="chooseGame" count="`+count+`" max="`+max+`"   >
+                <main class="adminMain">   
+                    <div class="table-wrapper" count="`+count+`" max="`+max+`"   >
                         <h2>Choose a game to check out its global statistics</h2>
-                        <table>
+                        <table class="fl-table">
                             <thead>
                                 <tr>
-                                    <td>Title</td>
-                                    <td>Developer</td>
-                                    <td>Release Date</td>
-                                    <td>Price</td>
+                                    <th>Title</th>
+                                    <th>Developer</th>
+                                    <th>Release Date</th>
+                                    <th>Price</th>
                                 </tr>                        
                             </thead>
                             <tbody>
                             </tbody>
                         </table>
-                        <input type="button" id="last" onclick="chooseGame(`+(count-10)+`)" value="Previous 10"/>
-                        <input type="button" id="next" onclick="chooseGame(`+(count+10)+`)" value="Next 10"/>
+                    </div>
+                    <br>
+                    <div class="btn-group" style="margin-left: 45%" role="group" aria-label="Basic example">
+                        <input class="btn btn-secondary btn-sm" type="button" onclick="chooseGame(`+(count-10)+`)" value="Previous 10"/>
+                        <input class="btn btn-secondary btn-sm" type="button" onclick="chooseGame(`+(count+10)+`)" value="Next 10"/>
                     </div>
                 </main>`;
             for(var i = count; i<count + 10; i++){
@@ -168,16 +151,18 @@ function chooseTester(countIn){
             if(count + 75 > response.result.length) count = response.result.length - 60;
             document.getElementsByTagName("body")[0].innerHTML += `
         <main class="adminMain">
-            <div id="chooseTester">
+            <div class="table-wrapper">
                 <h2>Choose a tester to check out his/her overall statistics</h2>
-                <table>
+                <table class="fl-table">
                     <tbody>
                         
                     </tbody>
                 </table>                
             </div> 
-            <input type="button" id="last" onclick="chooseTester(`+(count-60)+`)" value="Previous 60"/>
-            <input type="button" id="next" onclick="chooseTester(`+(count+60)+`)" value="Next 60"/>
+            <div class="btn-group" style="margin-left: 45%" role="group" aria-label="Basic example">
+                <input class="btn btn-secondary btn-sm" type="button" onclick="chooseTester(`+(count-60)+`)" value="Previous 60"/>
+                <input class="btn btn-secondary btn-sm" type="button" onclick="chooseTester(`+(count+60)+`)" value="Next 60"/>
+            </div>
         </main>
         `;
         for(var i = 0; i < 12; i++){ 
@@ -219,8 +204,8 @@ function choosenTester(idIN){
                     </ul>
                 </div>
                 <div id="choosenRight">
-                    <input type="button" id="changeAdmin" value="Change admin property" onclick="changeAdmin(`+idIN+`)"/>
-                    <input type="button" id="deleteUser" value="Delete user" onclick="deleteUser(`+idIN+`)"/>
+                    <input class="btn btn-secondary" type="button" value="Change admin property" onclick="changeAdmin(`+idIN+`)"/>
+                    <input class="btn btn-secondary" type="button" value="Delete user" onclick="deleteUser(`+idIN+`)"/>
                 </div>
             </div>
         </main>
@@ -318,9 +303,11 @@ function choosenGame(idIN){
                     </ul>
                 </div>
                 <div id="choosenRight">
-                    <input type="button" id="updateGame" value="Update the elements of the game" onclick="updateGame(`+idIN+`)"/>
-                    <input type="button" id="addAchi" value="Add a new achievement" onclick="setupAddAchievement(`+idIN+`)"/>
-                    <input type="button" id="deleteGame" value="Delete game" onclick="deleteGame(`+idIN+`)"/>
+                    <div class="btn-group-vertical">
+                        <input class="btn btn-secondary" type="button" id="updateGame" value="Update game elements" onclick="updateGame(`+idIN+`)"/>
+                        <input class="btn btn-secondary" type="button" id="addAchi" value="Add a new achievement" onclick="setupAddAchievement(`+idIN+`)"/>
+                        <input class="btn btn-secondary" type="button" id="deleteGame" value="Delete game" onclick="deleteGame(`+idIN+`)"/>
+                    </div>
                 </div>
             </div>
         </main>
