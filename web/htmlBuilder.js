@@ -11,20 +11,19 @@ function setup(){
 }
 
 
-//DONE
 function clearContent(){    
     var header = document.getElementsByClassName("header")[0];
     var body = document.getElementsByTagName("body")[0];
     body.innerHTML = "<header class=\"header\">" + header.innerHTML + "</header>";
 }
-//DONE
+
 function logOut(){
     clearContent();
     setupLogin();
     clearLocalStorage();
 }
 
-//DONE
+
 function setupLogin(){
     document.getElementsByTagName("body")[0].innerHTML += `
         <div id="login">
@@ -41,7 +40,7 @@ function setupLogin(){
         </div>`;
 }
 
-//DONE
+
 function setupAdminAside(){
     document.getElementsByTagName("body")[0].innerHTML += `
         <aside id="adminAside">
@@ -79,7 +78,6 @@ function setupAdminAside(){
 }
 
 
-//TODO: fill it up with data, once model+controller ready
 function chooseGame(countIn){
     if(countIn < 0) var count = 0;
     else var count = countIn;
@@ -135,7 +133,7 @@ function chooseGame(countIn){
 }
 
 
-//TODO: fill it with data
+
 function chooseTester(countIn){
     if(countIn < 0) var count = 0;
     else var count = countIn;
@@ -405,6 +403,7 @@ function updateGame(idIN){
             </div>
         </main>
     `;
+    
     var request = {"task" : "getGame", "id" : idIN};
     $.ajax({
         url:"GameController",
@@ -467,6 +466,7 @@ function deleteGame(idIN){
         }
     });
 }
+
 function setupAddAchievement(idIN){    
     clearContent();
     setupAdminAside();
@@ -497,6 +497,7 @@ function setupAddAchievement(idIN){
 `;
     
 }
+
 function addAchievement(idIN){
     if(document.getElementById("typeIN").value < 1 || document.getElementById("typeIN").value > 5){
         alert("Wrong input");
@@ -524,6 +525,7 @@ function addAchievement(idIN){
         });
     }
 }
+
 function changeAdmin(idIN){
     var isAdmin = document.getElementById("userAdmin").innerHTML;
     if(isAdmin === "<b>Admin</b>"){
@@ -580,7 +582,6 @@ function deleteUser(idIN){
     });
 }
 
-//TODO: connect to db
 function newTester(){
     clearContent();
     setupAdminAside();
@@ -600,7 +601,7 @@ function newTester(){
         </main>
 `;
 }
-//TODO: connect to db
+
 function newGame(){
     clearContent();
     setupAdminAside();
@@ -687,6 +688,7 @@ function checkCharts(){
     getTestersOverTime();
     getGenderDistribution();
 }
+
 function makeScoreDisrubutionPlot(response){
     const data = [{
         x: response.score,
@@ -701,6 +703,7 @@ function makeScoreDisrubutionPlot(response){
     };
     Plotly.newPlot('plot1', data, layout);
 }
+
 function makeReviewsOverTimePlot(response){
     const data = [{
         x: [response.year, response.month].reduce((a, b) => a.map((v, i) => v + '-' + b[i])),
@@ -865,7 +868,8 @@ function checkProgress(){
             </div>
 
         </main>
-`;  var request = {"task" : "getAllStatisticsByUser", "id" : localStorage.getItem("id")};
+`; 
+    var request = {"task" : "getAllStatisticsByUser", "id" : localStorage.getItem("id")};
     $.ajax({        
         url:"StatisticsController",
         type:"POST",
@@ -890,62 +894,10 @@ function checkProgress(){
         }
     });
 }
-/*
-function listProgress(idIN){
-    
-    clearContent();
-    setupAdminAside();
-    var max=0;
-    var request = {"task" : "statisticsListbyUser", "id":idIN};
-    $.ajax({
-        url:"StatisticsController",
-        type:"POST",
-        data: request,
-        success: function(response){
-            max = response.result.length;
-            if(count > response.result.length - 10) count = response.result.length-10;
-            document.getElementsByTagName("body")[0].innerHTML += `
-                <main class="adminMain">            
-                    <div id="chooseGame" count="`+count+`" max="`+max+`"   >
-                        <h2>Choose a game to check out its global statistics</h2>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <td>Title</td>
-                                    <td>Developer</td>
-                                    <td>Release Date</td>
-                                    <td>Price</td>
-                                </tr>                        
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                        <input type="button" id="last" onclick="chooseGame(`+(count-10)+`)" value="Previous 10"/>
-                        <input type="button" id="next" onclick="chooseGame(`+(count+10)+`)" value="Next 10"/>
-                    </div>
-                </main>`;
-            for(var i = count; i<count + 10; i++){
-                document.getElementsByTagName("tbody")[0].innerHTML += 
-                `<tr id="" onclick="">
-                    <td>` + response.result[i].gameName + `</td>
-                    <td>` + response.result[i].userName + `</td>
-                    <td>` + response.result[i].firstPlayed + `</td>
-                    <td>` + response.result[i].lastPlayed + `</td>
-                    <td>` + response.result[i].minutes + `</td>
-                </tr>`;
-            }
-        },
-        error: function(response){
-            alert("Problem with the data processing");
-            console.log(response);
-        }
-    });
-}
-*/
+
 function listAllGame(countIn){
     if(countIn < 0) var count = 0;
     else var count = countIn;
-    //var max = 0;
     clearContent();
     setupUserAside();
     var request = {"task" : "getAllGame"};
@@ -954,8 +906,7 @@ function listAllGame(countIn){
         type:"POST",
         data: request,
         success: function(response){
-           // max = response.result.length;
-            //if(count > response.result.length - 10) count = response.result.length-10;
+
             document.getElementsByTagName("body")[0].innerHTML += `
                 <main class='adminMain'>
             <div id="newGame">

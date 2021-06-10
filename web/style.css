@@ -93,24 +93,8 @@ aside input{
 
 /*choose game part*/
 
-#chooseGame td{
-    width: 25%;
-    text-align: center;
-    padding: 0;
-    padding-top: 7px;
-    padding-bottom: 7px;
-}
-#chooseGame tr{
-    outline: thin solid;
-}
-#chooseGame thead tr{
-    outline: 0;
-}
-#chooseGame thead td{    
-    border: black 2px solid;
-    padding: 0;
-    margin-bottom: 10px;
-}
+
+
 #chooseGame h2{
     text-align: center;
     margin-top: 150px;
@@ -139,14 +123,8 @@ aside input{
 #chooseTester .true{
     background-color: crimson;
 }
-#chooseTester td{
-    width: 20%;
-    text-align: center;
-    padding: 0;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    outline: thin solid;
-}
+
+
 #chooseTester h2{
     text-align: center;
     margin-top: 100px;
@@ -219,13 +197,7 @@ aside input{
 #newGame label{    
     width: 50px; 
 }
-#nameIN{
-    width: 150px;
-    text-align: left;
-}
-#priceIN{
-    width: 45px;
-}
+
 #achievementsAdd ul{
     margin-left: calc( (100% - 400px) / 2 );
     margin-top: 100px;
@@ -255,7 +227,6 @@ aside input{
     margin-left: auto;
     margin-right: auto;
 }
-
 
 .achievementsAdd{
     
@@ -289,7 +260,7 @@ aside input{
     width: 50px; 
 }
 
-/* Table Styles */
+/* Table */
 
 .table-wrapper{
     margin: 10px 70px 70px;
