@@ -590,10 +590,10 @@ function newTester(){
                 <h2>Register new Tester or create a new Admin</h2>
                 <ul>
                     <li>
-                        <input type="button" value="Create new user" name="newUser" onclick="newUser(false)" />
+                        <input class="btn btn-secondary" type="button" value="Create new user" name="newUser" onclick="newUser(false)" />
                     </li>
                     <li>
-                        <input type="button" value="Create new admin" name="newAdmin" onclick="newUser(true)" />
+                        <input class="btn btn-secondary" type="button" value="Create new admin" name="newAdmin" onclick="newUser(true)" />
                     </li>
                 </ul>
             </div>
@@ -606,36 +606,35 @@ function newGame(){
     setupAdminAside();
     document.getElementsByTagName("body")[0].innerHTML += `
         <main class='adminMain'>
-            <div id="newGame">
+            <div id="">
                 <h2>Register a new game to the database</h2>
-                <ul>
-                    <li>
-                        <label>Name: </label>
-                        <input id="nameIN" type="text" name="name" value="" />
-                        <br/>
-                    </li>
-                    <li>
-                        <label>Description: </label>
-                        <br/>
-                        <textarea id="descIN"  name="desc" placeholder="A small description of the game"/></textarea>
-                    
-                    </li>
-                    <li>
-                        <label id="devLBL">Developer: </label>
-                        <input id="devIN" type="text" name="dev" value="" />
-                    </li>
-                    <li>
-                        <label>Release date: </label>
-                        <input id="dateIN" type="date" name="date" value="" />
-                    </li>
-                    <li>
-                        <label>Price: </label>
-                        <input id="priceIN" type="number" name="price" value="60" min="0" max="120"/>
-                    </li>
-                    <li>
-                        <input type="button" value="Register the new game" name="newGame" onclick="addGame()" />
-                    </li>
-                </ul>
+                
+                    <form class="addNewGameForm">
+                        <div class="form-group">
+                            <label>Name: </label>
+                            <input class="form-control" id="" type="text" name="name" value="" />
+                            <br/>
+                        </div>
+                        <div class="form-group">
+                            <label>Description: </label>
+                            <br/>
+                            <textarea class="form-control" id=""  name="desc" placeholder="A small description of the game"/></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label id="">Developer: </label>
+                            <input class="form-control" id="" type="text" name="dev" value="" />
+                        </div>    
+                        <div class="form-group">                
+                            <label>Release date: </label>
+                            <input class="form-control" id="" type="date" name="date" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label>Price: </label>
+                            <input class="form-control" id="" type="number" name="price" value="60" min="0" max="120"/>
+                        </div>   
+                        <input id="newgameBTN" type="button" class="btn btn-secondary" value="Register the new game" name="newGame" onclick="addGame()" />
+                   </form>
+               
             </div>
         </main>
 `;
@@ -758,16 +757,16 @@ function setupUserAside(){
         <aside id="userAside">
             <ul>
                 <li>
-                    <input type="button" value="Add Progress" name="addProgress" onclick="addProgress()" />   
+                    <input class="btn btn-outline-secondary" type="button" value="Add Progress" name="addProgress" onclick="addProgress()" />   
                 </li>
                 <li>
-                    <input type="button" value="Check progress" name="checkProgress" onclick="checkProgress()" />
+                    <input class="btn btn-outline-secondary" type="button" value="Check progress" name="checkProgress" onclick="checkProgress()" />
                 </li>
                 <li>
-                    <input type="button" value="Add Review" name="addReview" onclick="listAllGame(0)" />
+                    <input class="btn btn-outline-secondary" type="button" value="Add Review" name="addReview" onclick="listAllGame(0)" />
                 </li>
                 <li>
-                    <input type="button" value="Log out" name="logOut" onclick="logOut()" />
+                    <input class="btn btn-outline-secondary" type="button" value="Log out" name="logOut" onclick="logOut()" />
                 </li>
             </ul>
         </aside>`;
