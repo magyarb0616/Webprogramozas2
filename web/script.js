@@ -28,7 +28,6 @@ function login(){
                     }   
                 }
             }
-            //console.log(response);
         },
         error: function(response){
             clearLocalStorage();
