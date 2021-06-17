@@ -71,11 +71,11 @@ function newUser(isAdmin){
 
 function addGame(){
     if(checkNewGameData()){
-        var name = document.getElementById("nameIN").value;
-        var desc = document.getElementById("descIN").value;
-        var dev = document.getElementById("devIN").value;
-        var date = document.getElementById("dateIN").value;
-        var price = document.getElementById("priceIN").value;
+        var name = document.getElementById("nameIN1").value;
+        var desc = document.getElementById("descIN1").value;
+        var dev = document.getElementById("devIN1").value;
+        var date = document.getElementById("dateIN1").value;
+        var price = document.getElementById("priceIN1").value;
         var request = {"task" : "gameCreate", "name" : name, "description" : desc, "dev" : dev, "releaseDate" : date, "price" : price};
         console.log(request);
         $.ajax({
@@ -176,9 +176,9 @@ function cumSum(a) {
 
 function checkNewGameData(){
     if(
-        document.getElementById("nameIN").value.length < 2
-        || document.getElementById("descIN").value.length < 4
-        || document.getElementById("devIN").value.length < 2
+        document.getElementById("nameIN1").value.length < 2
+        || document.getElementById("descIN1").value.length < 4
+        || document.getElementById("devIN1").value.length < 2
     )   return false;
     else return true;
 }

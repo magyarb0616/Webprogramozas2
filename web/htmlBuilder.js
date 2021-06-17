@@ -603,25 +603,25 @@ function newGame(){
                     <form class="addNewGameForm">
                         <div class="form-group">
                             <label>Name: </label>
-                            <input class="form-control" id="" type="text" name="name" value="" />
+                            <input class="form-control" id="nameIN1" type="text" name="name" value="" />
                             <br/>
                         </div>
                         <div class="form-group">
                             <label>Description: </label>
                             <br/>
-                            <textarea class="form-control" id=""  name="desc" placeholder="A small description of the game"/></textarea>
+                            <textarea class="form-control" id="descIN1"  name="desc" placeholder="A small description of the game"/></textarea>
                         </div>
                         <div class="form-group">
                             <label id="">Developer: </label>
-                            <input class="form-control" id="" type="text" name="dev" value="" />
+                            <input class="form-control" id="devIN1" type="text" name="dev" value="" />
                         </div>    
                         <div class="form-group">                
                             <label>Release date: </label>
-                            <input class="form-control" id="" type="date" name="date" value="" />
+                            <input class="form-control" id="dateIN1" type="date" name="date" value="" />
                         </div>
                         <div class="form-group">
                             <label>Price: </label>
-                            <input class="form-control" id="" type="number" name="price" value="60" min="0" max="120"/>
+                            <input class="form-control" id="priceIN1" type="number" name="price" value="60" min="0" max="120"/>
                         </div>   
                         <input id="newgameBTN" type="button" class="btn btn-secondary" value="Register the new game" name="newGame" onclick="addGame()" />
                     </form>
