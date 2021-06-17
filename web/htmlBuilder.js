@@ -725,8 +725,8 @@ function makeTestersOverTimePlot(response){
 
 function makeGenderDisrubutionPlot(response){
     const data = [{
-        x: response.gender,
-        y: response.numberOf,
+        labels: response.gender,
+        values: response.numberOf,
         type: 'pie'
     }];
     const layout = {
