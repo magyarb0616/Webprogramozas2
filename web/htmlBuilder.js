@@ -727,7 +727,7 @@ function makeGenderDisrubutionPlot(response){
     const data = [{
         x: response.gender,
         y: response.numberOf,
-        type: 'bar'
+        type: 'pie'
     }];
     const layout = {
         width: 600,
