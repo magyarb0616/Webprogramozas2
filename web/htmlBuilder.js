@@ -7,9 +7,7 @@ function setup(){
             callUserPage();
         }
     }
- 
 }
-
 
 function clearContent(){    
     var header = document.getElementsByClassName("header")[0];
@@ -22,7 +20,6 @@ function logOut(){
     setupLogin();
     clearLocalStorage();
 }
-
 
 function setupLogin(){
     document.getElementsByTagName("body")[0].innerHTML += `
@@ -40,7 +37,7 @@ function setupLogin(){
         </div>`;
 }
 
-
+// Displaying admin menu
 function setupAdminAside(){
     document.getElementsByTagName("body")[0].innerHTML += `
         <aside id="adminAside">
@@ -74,9 +71,7 @@ function setupAdminAside(){
                 </li>
             </ul>
         </aside>`;
-        
 }
-
 
 function chooseGame(countIn){
     if(countIn < 0) var count = 0;
@@ -132,8 +127,6 @@ function chooseGame(countIn){
     });
 }
 
-
-
 function chooseTester(countIn){
     if(countIn < 0) var count = 0;
     else var count = countIn;
@@ -171,7 +164,6 @@ function chooseTester(countIn){
                 count++;
             }
         }
-            
         },
         error: function(response){
             alert("Problem with the data processing");
@@ -194,12 +186,9 @@ function choosenTester(idIN){
                     <p id="userGender"></p>
                     <p id="userAdmin"></p>
                     <p>All achievements</p>
-                    <ul id="gameList">
-                        
-                    </ul>
+                    <ul id="gameList"></ul>
                     <p>All reviews</p>
-                    <ul id="reviewList">
-                    </ul>
+                    <ul id="reviewList"></ul>
                 </div>
                 <div id="choosenRight">
                     <input class="btn btn-secondary" type="button" value="Change admin property" onclick="changeAdmin(`+idIN+`)"/>
@@ -310,6 +299,7 @@ function choosenGame(idIN){
             </div>
         </main>
 `;
+
     var request = {"task" : "getGame", "id" : idIN};
     $.ajax({
         url:"GameController",
@@ -355,8 +345,6 @@ function choosenGame(idIN){
             for(var i=0; i < response.result.length; i++){
                 document.getElementById("reviewList").innerHTML += "<li>"+response.result[i].comment 
                     +" ( "+response.result[i].score+" ) by "+response.result[i].username +"</li>";
-                
-                 
             }
         },
         error: function(response){            
@@ -365,6 +353,7 @@ function choosenGame(idIN){
         }
     });
 }
+
 function updateGame(idIN){
     clearContent();
     setupAdminAside();
@@ -425,6 +414,7 @@ function updateGame(idIN){
         }
     });
 }
+
 function updateTheGame(idIN){
     var request = {"task" : "updateGame", "gameId" : idIN, "description" : document.getElementById("descIN").value,
         "dev" : document.getElementById("devIN").value, "releaseDate" : document.getElementById("dateIN").value,
@@ -435,14 +425,14 @@ function updateTheGame(idIN){
         type:"POST",
         data: request,
         success: function(response){
-          if(response.result === true){
+            if(response.result === true){
                 alert("Succesful updating");
                 chooseGame(0);
-          }
-          else{
-              alert("Unsuccesful updating");
-                chooseGame(0);
-          }
+            }
+            else{
+            alert("Unsuccesful updating");
+            chooseGame(0);
+            }
         },
         error: function(response){            
             alert("Problem with the data processing");
@@ -450,6 +440,7 @@ function updateTheGame(idIN){
         }
     });
 }
+
 function deleteGame(idIN){
     var request = {"task" : "setGameInactive", "id" : idIN};
     $.ajax({
@@ -479,7 +470,6 @@ function setupAddAchievement(idIN){
                 <label>Description: </label>
                 <br/>
                 <textarea id="descIN"  name="desc" placeholder="A small description of the achievement"/></textarea>
-
             </li>
             <li>
                 <label>Prerequisite: </label>
@@ -495,14 +485,14 @@ function setupAddAchievement(idIN){
         </ul>
         </main>
 `;
-    
 }
 
 function addAchievement(idIN){
     if(document.getElementById("typeIN").value < 1 || document.getElementById("typeIN").value > 5){
         alert("Wrong input");
         return;
-    }else{
+    }
+    else{
         var desc = document.getElementById("descIN").value;
         var typeId = document.getElementById("typeIN").value;
         var preIN = document.getElementById("preIN").value;
@@ -634,10 +624,9 @@ function newGame(){
                             <input class="form-control" id="" type="number" name="price" value="60" min="0" max="120"/>
                         </div>   
                         <input id="newgameBTN" type="button" class="btn btn-secondary" value="Register the new game" name="newGame" onclick="addGame()" />
-                   </form>
-               
-            </div>
-        </main>
+                    </form>
+        </div>
+    </main>
 `;
 }
 
@@ -694,7 +683,7 @@ function makeScoreDisrubutionPlot(response){
         x: response.score,
         y: response.numberOf,
         type: 'bar'
-      }];
+    }];
     const layout = {
         width: 600,
         height: 350,
@@ -709,13 +698,12 @@ function makeReviewsOverTimePlot(response){
         x: [response.year, response.month].reduce((a, b) => a.map((v, i) => v + '-' + b[i])),
         y: cumSum(response.numberOf),
         type: 'line'
-      }];
+    }];
     const layout = {
         width: 600,
         height: 350,
         margin: 0,
         title: "Total review count over time"
-             
     };
     Plotly.newPlot('plot2', data, layout);
 }
@@ -725,13 +713,12 @@ function makeTestersOverTimePlot(response){
         x: [response.year, response.month].reduce((a, b) => a.map((v, i) => v + '-' + b[i])),
         y: cumSum(response.numberOf),
         type: 'line'
-      }];
+    }];
     const layout = {
         width: 600,
         height: 350,
         margin: 0,
         title: "Total user count over time"
-             
     };
     Plotly.newPlot('plot3', data, layout);
 }
@@ -741,7 +728,7 @@ function makeGenderDisrubutionPlot(response){
         x: response.gender,
         y: response.numberOf,
         type: 'bar'
-      }];
+    }];
     const layout = {
         width: 600,
         height: 350,
@@ -773,7 +760,6 @@ function setupUserAside(){
                 </li>
             </ul>
         </aside>`;
-        
 }
 
 function addProgress(idIN){
@@ -788,7 +774,7 @@ function addProgress(idIN){
            // max = response.result.length;
             //if(count > response.result.length - 10) count = response.result.length-10;
             document.getElementsByTagName("body")[0].innerHTML += `
-         <main class='adminMain'>
+        <main class='adminMain'>
             <div id="newGame">
                 <h2>Add progress to the desired game</h2>
                 <ul>
@@ -805,7 +791,7 @@ function addProgress(idIN){
                     </li>
                     
                     <li>
-                       <label class="achievementsAdd" >Achievement: </label> 
+                        <label class="achievementsAdd" >Achievement: </label> 
                         <select name="Achievements" class="achievementsAdd", id="achievementsOfGame">
                         <option disabled selected value> -- select an option -- </option>
                         </select>
@@ -817,7 +803,6 @@ function addProgress(idIN){
                     </li>
                     
                     <li>
-
                         <label class="progressAdd" id="devLBL">Minutes played: </label>
                         <input id="minutesIN" type="number" min="0" name="Minutes played" value="" class="progressAdd"/>
                         <br>
@@ -832,9 +817,7 @@ function addProgress(idIN){
 `;
             for(var i = 0; i<response.result.length; i++){
                 document.getElementsByTagName("select")[0].innerHTML += 
-                `<option value="`+response.result[i].gameId+`">`+response.result[i].name+`</option>
-                
-                `;
+                `<option value="`+response.result[i].gameId+`">`+response.result[i].name+`</option>`;
             }
         },
         error: function(response){
@@ -866,7 +849,6 @@ function checkProgress(){
                     </tbody>
                 </table>
             </div>
-
         </main>
 `; 
     var request = {"task" : "getAllStatisticsByUser", "id" : localStorage.getItem("id")};
@@ -925,7 +907,7 @@ function listAllGame(countIn){
                     </li>
                     
                     <li>
-                       <label class="achievementsAdd">Review: </label> 
+                        <label class="achievementsAdd">Review: </label> 
                         <select id="scoreIN" name="Review" class="achievementsAdd">
                         <option disabled selected value> -- select an option -- </option>
                         <option value="1">1</option>
@@ -942,15 +924,12 @@ function listAllGame(countIn){
                     <li>
                         <input type="button" value="Add" name="AddGame" onclick="addReview()" class="achievementsAdd"/>
                     </li>
-                    
                 </ul>
             </div>
         </main>`;
             for(var i = count; i<response.result.length; i++){
                 document.getElementsByTagName("select")[0].innerHTML += 
-                `<option value="`+response.result[i].gameId+`">`+response.result[i].name+`</option>
-                
-                `;
+                `<option value="`+response.result[i].gameId+`">`+response.result[i].name+`</option>`;
             }
         },
         error: function(response){
@@ -983,5 +962,3 @@ function addReview(){
         });
     }
 }
-
-

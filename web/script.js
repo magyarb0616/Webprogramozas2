@@ -20,9 +20,9 @@ function login(){
                 else{
                     if(response.isAdmin === "false" && response.id != 0){
                         //alert("Nem vagy admin");
-                       localStorage.setItem("id", response.id);
-                       localStorage.setItem("isAdmin", response.isAdmin);
-                       callUserPage();
+                        localStorage.setItem("id", response.id);
+                        localStorage.setItem("isAdmin", response.isAdmin);
+                        callUserPage();
                     } else {
                         alert("Wrong key!");  
                     }   
@@ -49,8 +49,8 @@ function callUserPage(){
     clearContent();
     setupUserAside();
     addProgress();
-    
 }
+
 //PREPARE THE CONTROLLER FOR THIS
 function newUser(isAdmin){
     var request = {"task" : "userCreate", "isAdmin" : isAdmin}; 
@@ -102,75 +102,78 @@ function addGame(){
 function getScoreDisrubution(){
     const request = {"task" : "getScoreDistribution"};
     $.ajax({
-            url:"ReviewController",
-            type:"GET",
-            data: request,
-            success: function(response){
-                makeScoreDisrubutionPlot(response.result);
-            },
-            error: function(response){
-                response = {score: [1,2,3,4,5], numberOf: [9,7,25,42,18]};
-                makeScoreDisrubutionPlot(response);
-            }
-        });
+        url:"ReviewController",
+        type:"GET",
+        data: request,
+        success: function(response){
+            makeScoreDisrubutionPlot(response.result);
+        },
+        error: function(response){
+            response = {score: [1,2,3,4,5], numberOf: [9,7,25,42,18]};
+            makeScoreDisrubutionPlot(response);
+        }
+    });
 }
+
 function getReviewsOverTime(){
     const request = {"task" : "getReviewsOverTime"};
     $.ajax({
-            url:"ReviewController",
-            type:"GET",
-            data: request,
-            success: function(response){
-                makeReviewsOverTimePlot(response.result);
-            },
-            error: function(response){
-                response = {year: [2020,2021,2021,2021,2021], month: [12,1,2,3,4], numberOf: [0,24,21,36,20]}
-                makeReviewsOverTimePlot(response);
-                //alert("Problem with database connection");
-                //console.log(response);
-            }
-        });
+        url:"ReviewController",
+        type:"GET",
+        data: request,
+        success: function(response){
+            makeReviewsOverTimePlot(response.result);
+        },
+        error: function(response){
+            response = {year: [2020,2021,2021,2021,2021], month: [12,1,2,3,4], numberOf: [0,24,21,36,20]}
+            makeReviewsOverTimePlot(response);
+            //alert("Problem with database connection");
+            //console.log(response);
+        }
+    });
 }
+
 function getTestersOverTime(){
     const request = {"task" : "getTestersOverTime"};
     $.ajax({
-            url:"UserController",
-            type:"GET",
-            data: request,
-            success: function(response){
-                makeTestersOverTimePlot(response.result);
-            },
-            error: function(response){
-                response = {year: [2021,2021,2021], month: [3,4,5], numberOf: [0,101,7]};
-                makeTestersOverTimePlot(response);
-            }
-        });
+        url:"UserController",
+        type:"GET",
+        data: request,
+        success: function(response){
+            makeTestersOverTimePlot(response.result);
+        },
+        error: function(response){
+            response = {year: [2021,2021,2021], month: [3,4,5], numberOf: [0,101,7]};
+            makeTestersOverTimePlot(response);
+        }
+    });
 }
+
 function getGenderDistribution(){
     const request = {"task" : "getGenderDistribution"};
     $.ajax({
-            url:"GenderController",
-            type:"GET",
-            data: request,
-            success: function(response){
-                makeGenderDisrubutionPlot(response.result);
-            },
-            error: function(response){
-                alert("Database connection failed")
-            }
-        });
+        url:"GenderController",
+        type:"GET",
+        data: request,
+        success: function(response){
+            makeGenderDisrubutionPlot(response.result);
+        },
+        error: function(response){
+            alert("Database connection failed")
+        }
+    });
 }
 
 function cumSum(a) {
     let result = [a[0]];
 
     for(let i = 1; i < a.length; i++) {
-      result[i] = result[i - 1] + a[i];
+        result[i] = result[i - 1] + a[i];
     }
 
     return result;
 };
-//DONE
+
 function checkNewGameData(){
     if(
         document.getElementById("nameIN").value.length < 2
@@ -181,23 +184,24 @@ function checkNewGameData(){
 }
 
 
-//DONE, clear login data, on load and after log out
+//Clearing login data on load and after log out
 function clearLocalStorage(){    
     localStorage.removeItem("id");
     localStorage.removeItem("isAdmin");
 }
+
 function showLabel(){
-    
     var x = document.getElementsByClassName("achievementsAdd");
     for (let i = 0; i < x.length; i++) {
         x[i].style.display = "inline";
     }
-   
+    
     x = document.getElementsByClassName("progressAdd");
     for (let i = 0; i < x.length; i++) {
         x[i].style.display = "inline";
     }
 }
+
 function loadAchievementsForGame(){
     const gameId = document.getElementsByTagName("select")[0].value
     const request = {"task" : "getAllAchievementByGame", "id": gameId};
@@ -222,8 +226,8 @@ function loadAchievementsForGame(){
             alert("Database connection failed")
         }
     });
-    
 }
+
 function saveAchievement(){
     const achievementsOfGame = document.querySelector("#achievementsOfGame")
     const achievementId = achievementsOfGame.value;
@@ -240,6 +244,7 @@ function saveAchievement(){
         }
     });
 }
+
 function saveProgress(){
     const minutesIN = document.querySelector("#minutesIN").value;
     const gameId = document.querySelector("#games").value;

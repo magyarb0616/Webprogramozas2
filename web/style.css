@@ -1,3 +1,4 @@
+/* General settings */
 html{
     height: 100%;
 }
@@ -7,8 +8,6 @@ body{
     height: calc( 100% - 34px );
     font-family: calibri;
 }
-
-/*header, always visible*/
 h2
 {
     margin-left: 50px;
@@ -16,6 +15,7 @@ h2
     padding-top: 20px;
 }
 
+/*header, always visible*/
 .header{
     width: 100%;
     background-color: #aed9e0;
@@ -32,12 +32,10 @@ h2
 }
 
 /*login part*/
-
 #login{
     padding: 0;
     height: max-content;
 }
-
 #login h1{
     margin-top: 200px;
     text-align: center;
@@ -55,7 +53,6 @@ h2
 }
 
 /*aside part*/
-
 aside{
     float: left;
     display: block;
@@ -81,7 +78,6 @@ aside input{
 }
 
 /*general admin main*/
-
 .adminMain{
     float: right;
     width: 85%;
@@ -92,9 +88,6 @@ aside input{
 }
 
 /*choose game part*/
-
-
-
 #chooseGame h2{
     text-align: center;
     margin-top: 150px;
@@ -119,18 +112,17 @@ aside input{
     width: 200px;
     height: 80px;
 }
+
 /*choose player part*/
 #chooseTester .true{
     background-color: crimson;
 }
-
-
 #chooseTester h2{
     text-align: center;
     margin-top: 100px;
 }
-/*choosen player part*/
 
+/*chosen player part*/
 #choosenLeft{
     float: left;
     margin-top: 50px;
@@ -153,8 +145,7 @@ aside input{
     margin-bottom: 0;
 }
 
-/*new User/Admin*/
-
+/*new User or Admin*/
 #newUser ul{
     display: inline;
     margin: 0;
@@ -177,7 +168,6 @@ aside input{
 }
 
 /*new game*/
-
 #newGame ul{
     margin-left: calc( (100% - 400px) / 2 );
     margin-top: 50px;
@@ -198,6 +188,7 @@ aside input{
     width: 50px; 
 }
 
+/* add achievement */
 #achievementsAdd ul{
     margin-left: calc( (100% - 400px) / 2 );
     margin-top: 100px;
@@ -209,8 +200,14 @@ aside input{
     text-align: center;
     padding: 2px;
 }
+.achievementsAdd{
+    display: none; 
+}
+.progressAdd{
+    display: none; 
+}
 
-/* charts*/
+/* Charts */
 #adminChartsMain{
     height: 95%;
 }
@@ -228,15 +225,7 @@ aside input{
     margin-right: auto;
 }
 
-.achievementsAdd{
-    
-    display: none; 
-}
-.progressAdd{
-    display: none; 
-}
-
-/* Update game*/
+/* Update game */
 #updateGame{
     text-align: center;
 }
@@ -261,12 +250,10 @@ aside input{
 }
 
 /* Table */
-
 .table-wrapper{
     margin: 10px 70px 70px;
     box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
 }
-
 .fl-table {
     border-radius: 5px;
     font-size: 18px;
@@ -278,34 +265,27 @@ aside input{
     white-space: nowrap;
     background-color: #CED4DA;
 }
-
 .fl-table td, .fl-table th {
     text-align: center;
     padding: 8px;
 }
-
 .fl-table td {
     border-right: 1px solid #f8f8f8;
     font-size: 16px;
 }
-
 .fl-table thead th {
     color: #ffffff;
     background: #324960;
 }
-
-
 .fl-table thead th:nth-child(odd) {
     color: #ffffff;
     background: #324960;
 }
-
 .fl-table tr:nth-child(even) {
     background: #F8F8F8;
 }
 
 /* Responsive */
-
 @media (max-width: 767px) {
     .fl-table {
         display: block;
@@ -369,21 +349,18 @@ aside input{
         text-align: center;
     }
 }
-.form-control
-{
+
+/* Form-control */
+.form-control {
     max-width: 40%;
-    
 }
-.addNewGameForm
-{
+.addNewGameForm {
     margin-left: 35%;
     margin-top: 70px;
 }
-#newgameBTN
-{
+#newgameBTN {
     width: 40%;
 }
-.form-select
-{
+.form-select {
     max-width: 30%;
 }
